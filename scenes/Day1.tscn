@@ -1,0 +1,85 @@
+[gd_scene load_steps=13 format=3 uid="uid://djwx64ak1b3vl"]
+
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_b20tk"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="2_h1gtu"]
+[ext_resource type="Resource" path="res://terrain/data.hterrain" id="3_8hsxx"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="4_5jejk"]
+[ext_resource type="PackedScene" uid="uid://haphddplmahb" path="res://player/player.tscn" id="5_a7us4"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_jk8q5"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_sogo7"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="8_awftb"]
+[ext_resource type="PackedScene" uid="uid://chfhb77a6wbs4" path="res://objectives/tent.tscn" id="9_2upes"]
+
+[sub_resource type="Resource" id="Resource_6b4ru"]
+script = ExtResource("4_5jejk")
+mode = 0
+textures = [[], []]
+
+[sub_resource type="Resource" id="Resource_wjk0l"]
+script = ExtResource("7_sogo7")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_g37gh"]
+script = ExtResource("8_awftb")
+cull_mask = 1048575
+h_offset = 0.0
+v_offset = 0.0
+projection = 0
+fov = 75.0
+size = 1.0
+frustum_offset = Vector2(0, 0)
+near = 0.05
+far = 4000.0
+
+[node name="Day1" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, 206.695, 3.50376, 266.434)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+script = ExtResource("1_b20tk")
+
+[node name="HTerrain" type="Node3D" parent="."]
+script = ExtResource("2_h1gtu")
+_terrain_data = ExtResource("3_8hsxx")
+chunk_size = 64
+collision_enabled = true
+collision_layer = 2
+collision_mask = 0
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_6b4ru")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = null
+shader_params/u_tile_reduction = null
+
+[node name="Player" parent="." instance=ExtResource("5_a7us4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 206.695, 0, 262.86)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.992228, 0.124433, 0, -0.124433, 0.992228, 0, 158.68, 0)
+
+[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, 206.695, 3.50376, 266.434)
+script = ExtResource("6_jk8q5")
+follow_mode = 5
+follow_target = NodePath("../Player/Smoothing/CSGSphere3D")
+look_at_mode = 2
+tween_resource = SubResource("Resource_wjk0l")
+camera_3d_resource = SubResource("Resource_g37gh")
+follow_offset = Vector3(0, 1.93, 2.755)
+follow_damping = true
+follow_damping_value = Vector3(0.17, 0.1, 0.1)
+dead_zone_width = 0.1
+show_viewfinder_in_play = true
+
+[node name="Tent" parent="." instance=ExtResource("9_2upes")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.629, 0, 243.171)
+
+[editable path="Player"]
