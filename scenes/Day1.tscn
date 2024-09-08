@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://djwx64ak1b3vl"]
+[gd_scene load_steps=15 format=3 uid="uid://djwx64ak1b3vl"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_b20tk"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="2_h1gtu"]
@@ -32,6 +32,16 @@ size = 1.0
 frustum_offset = Vector2(0, 0)
 near = 0.05
 far = 4000.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_30vea"]
+emission_shape = 1
+emission_sphere_radius = 10.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4wbu7"]
+radius = 0.01
+height = 0.1
+radial_segments = 4
+rings = 0
 
 [node name="Day1" type="Node3D"]
 
@@ -81,5 +91,13 @@ show_viewfinder_in_play = true
 
 [node name="Tent" parent="." instance=ExtResource("9_2upes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.629, 0, 243.171)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 207.058, 4.84499, 258.942)
+amount = 200
+randomness = 1.0
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_30vea")
+draw_pass_1 = SubResource("CapsuleMesh_4wbu7")
 
 [editable path="Player"]
