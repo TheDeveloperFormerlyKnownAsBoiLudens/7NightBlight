@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://buhid45ri3w31"]
+
+[ext_resource type="Script" path="res://player/player_night.gd" id="1_x0tuo"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_786e7"]
+size = Vector2(5, 5)
+
+[node name="Night1" type="Node3D"]
+
+[node name="PlayerCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14409, 0)
+script = ExtResource("1_x0tuo")
+
+[node name="Tent" type="Node3D" parent="."]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Tent"]
+mesh = SubResource("PlaneMesh_786e7")
