@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://imyouhg8q6sl"]
+
+[ext_resource type="Script" path="res://doge/doge_ai/doge_beehave_tree.gd" id="1_vkf7w"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_gcxxp"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="2_i32d2"]
+[ext_resource type="Script" path="res://doge/doge_ai/walk_to_owner_action.gd" id="3_0fyy8"]
+[ext_resource type="Script" path="res://doge/doge_ai/has_nearby_point_of_interest.gd" id="3_7xq1n"]
+[ext_resource type="Script" path="res://doge/doge_ai/walk_to_point_of_interest.gd" id="4_1c8ob"]
+
+[node name="DogeBeehaveTree" type="Node"]
+script = ExtResource("1_vkf7w")
+
+[node name="SelectorComposite" type="Node" parent="."]
+script = ExtResource("2_i32d2")
+
+[node name="PointOfInterest" type="Node" parent="SelectorComposite"]
+script = ExtResource("2_gcxxp")
+
+[node name="HasNearbyPointOfInterest" type="Node" parent="SelectorComposite/PointOfInterest"]
+script = ExtResource("3_7xq1n")
+
+[node name="WalkToPointOfInterestAction" type="Node" parent="SelectorComposite/PointOfInterest"]
+unique_name_in_owner = true
+script = ExtResource("4_1c8ob")
+
+[node name="WalkToOwnerAction" type="Node" parent="SelectorComposite"]
+unique_name_in_owner = true
+script = ExtResource("3_0fyy8")

@@ -12,19 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://chfhb77a6wbs4" path="res://objectives/tent.tscn" id="9_2upes"]
 [ext_resource type="Texture2D" uid="uid://10t3whxc6txg" path="res://sprites/snowflake.png" id="10_rcnyp"]
 [ext_resource type="PackedScene" uid="uid://ckj7lcsbgpuea" path="res://doge/doge.tscn" id="12_5pnfk"]
-[ext_resource type="PackedScene" uid="uid://imyouhg8q6sl" path="res://doge/doge_beehave_tree.tscn" id="13_tmhh6"]
+[ext_resource type="PackedScene" uid="uid://imyouhg8q6sl" path="res://doge/doge_ai/doge_beehave_tree.tscn" id="13_tmhh6"]
 
 [sub_resource type="Resource" id="Resource_6b4ru"]
 script = ExtResource("4_5jejk")
 mode = 0
 textures = [[], []]
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_se4od"]
-vertices = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, 499.5, 499.5, 0.5, 499.5, 499.5, 0.5, 0.5)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_20l3x"]
-size = Vector2(500, 500)
 
 [sub_resource type="Resource" id="Resource_wjk0l"]
 script = ExtResource("7_sogo7")
@@ -43,6 +36,13 @@ size = 1.0
 frustum_offset = Vector2(0, 0)
 near = 0.05
 far = 4000.0
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_se4od"]
+vertices = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, 499.5, 499.5, 0.5, 499.5, 499.5, 0.5, 0.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_20l3x"]
+size = Vector2(500, 500)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_30vea"]
 emission_shape_scale = Vector3(10, 1, 10)
@@ -69,12 +69,6 @@ size = Vector2(0.1, 0.1)
 [node name="Director" type="Node" parent="."]
 script = ExtResource("1_nhjrv")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, 206.695, 3.50376, 266.434)
-
-[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
-script = ExtResource("1_b20tk")
-
 [node name="HTerrain" type="Node3D" parent="."]
 script = ExtResource("2_h1gtu")
 _terrain_data = ExtResource("3_8hsxx")
@@ -93,19 +87,11 @@ shader_params/u_depth_blending = true
 shader_params/u_triplanar = null
 shader_params/u_tile_reduction = null
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_se4od")
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, 206.695, 3.50376, 266.434)
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 250)
-mesh = SubResource("PlaneMesh_20l3x")
-
-[node name="Player" parent="." instance=ExtResource("5_a7us4")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 206.695, 0, 262.86)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.939094, 0.34366, 0, -0.34366, 0.939094, 0, 158.68, 0)
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+script = ExtResource("1_b20tk")
 
 [node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
 transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, 206.695, 3.50376, 266.434)
@@ -119,8 +105,13 @@ follow_damping = true
 follow_damping_value = Vector3(0.17, 0.1, 0.1)
 dead_zone_width = 0.1
 
-[node name="Tent" parent="." instance=ExtResource("9_2upes")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.629, 0, 243.171)
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_se4od")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 0, 250)
+visible = false
+mesh = SubResource("PlaneMesh_20l3x")
 
 [node name="SnowParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
@@ -130,8 +121,20 @@ randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_30vea")
 draw_pass_1 = SubResource("QuadMesh_osl3h")
 
-[node name="Doge" parent="." instance=ExtResource("12_5pnfk")]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939094, 0.34366, 0, -0.34366, 0.939094, 0, 158.68, 0)
 
-[node name="DogeBeehaveTree" parent="Doge" instance=ExtResource("13_tmhh6")]
+[node name="Player" parent="." instance=ExtResource("5_a7us4")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 206.695, 0, 262.86)
+
+[node name="Doge" parent="." instance=ExtResource("12_5pnfk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225.548, 5.15301, 232.317)
+
+[node name="DogeBeehaveTree" parent="Doge" node_paths=PackedStringArray("player") instance=ExtResource("13_tmhh6")]
+player = NodePath("../../Player")
+
+[node name="Tent" parent="." instance=ExtResource("9_2upes")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.629, 0, 243.171)
 
 [editable path="Player"]

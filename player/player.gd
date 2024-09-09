@@ -50,3 +50,4 @@ func _input(event: InputEvent) -> void:
 				closest_distance = distance
 				closest_area = area
 		closest_area.reparent(inventory)
+		closest_area.monitorable = false
