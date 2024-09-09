@@ -1,11 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://buhid45ri3w31"]
+[gd_scene load_steps=11 format=3 uid="uid://buhid45ri3w31"]
 
 [ext_resource type="Script" path="res://player/player_night.gd" id="1_x0tuo"]
+[ext_resource type="Texture2D" uid="uid://10t3whxc6txg" path="res://sprites/snowflake.png" id="2_gel1j"]
+[ext_resource type="PackedScene" uid="uid://bl7gcnio8q63d" path="res://doge/night_doge.tscn" id="3_iebws"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_786e7"]
 size = Vector2(5, 5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_oj7wh"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i7q1t"]
+size = Vector2(5, 4.985)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ir30g"]
+size = Vector2(5, 5)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jnv2n"]
+emission_shape_scale = Vector3(10, 1, 10)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(2.92, 0, 0)
+initial_velocity_max = 10.0
+gravity = Vector3(0, -9.5, 0)
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66cm6"]
+transparency = 1
+albedo_texture = ExtResource("2_gel1j")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_1su2w"]
+material = SubResource("StandardMaterial3D_66cm6")
+size = Vector2(0.1, 0.1)
+
 [node name="Night1" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.496974, -0.642845, 0.582896, 0, 0.671721, 0.740805, -0.867765, 0.368161, -0.333828, 0, 0, 0)
+light_color = Color(0.0386105, 4.69275e-07, 0.282167, 1)
+light_energy = 12.578
+shadow_enabled = true
 
 [node name="PlayerCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14409, 0)
@@ -15,3 +54,52 @@ script = ExtResource("1_x0tuo")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="Tent"]
 mesh = SubResource("PlaneMesh_786e7")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.07678, 0.510591, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tent/CSGBox3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tent/CSGBox3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_oj7wh")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Tent"]
+
+[node name="EastWall" type="CSGMesh3D" parent="Tent/CSGCombiner3D"]
+transform = Transform3D(-0.5, -0.866025, 0, 0.866025, -0.5, 0, 0, 0, 1, 1.27259, 2.16614, 0)
+mesh = SubResource("PlaneMesh_i7q1t")
+
+[node name="WestWall" type="CSGMesh3D" parent="Tent/CSGCombiner3D"]
+transform = Transform3D(0.5, 0.866025, -8.74228e-08, 0.866025, -0.5, 0, -4.37114e-08, -7.57103e-08, -1, -1.25294, 2.16614, 0)
+mesh = SubResource("PlaneMesh_i7q1t")
+
+[node name="NorthWall" type="CSGMesh3D" parent="Tent/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.49036, -2.5)
+mesh = SubResource("PlaneMesh_ir30g")
+
+[node name="SouthWall" type="CSGMesh3D" parent="Tent/CSGCombiner3D"]
+transform = Transform3D(-1, 8.74228e-08, -3.82137e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 0, 2.49036, 2.5)
+mesh = SubResource("PlaneMesh_ir30g")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tent/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.724108, 1.58974, -2.52012)
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tent/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675892, 1.58974, 2.31774)
+operation = 2
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Tent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.97573, 0)
+size = Vector3(5.55, 4.5, 5.05)
+
+[node name="SnowParticles" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.43206, -0.454721)
+amount = 400
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_jnv2n")
+draw_pass_1 = SubResource("QuadMesh_1su2w")
+
+[node name="Doge" parent="." instance=ExtResource("3_iebws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09359, 0, 0)

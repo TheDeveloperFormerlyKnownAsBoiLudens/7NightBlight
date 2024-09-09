@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl7gcnio8q63d"]
+
+[ext_resource type="Texture2D" uid="uid://bjpgkumk50i4a" path="res://doge/doge_cart.png" id="1_0yfa1"]
+[ext_resource type="Script" path="res://scenes/Night1/doge.gd" id="2_bb4qk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ov1qh"]
+size = Vector3(1.31831, 1, 1)
+
+[node name="Doge" type="Node3D"]
+script = ExtResource("2_bb4qk")
+
+[node name="DogeSprite" type="Sprite3D" parent="."]
+transform = Transform3D(0.066779, 0, 0.997768, 0, 1, 0, -0.997768, 0, 0.066779, 0, 0.530032, 0)
+pixel_size = 0.0015
+billboard = 1
+texture = ExtResource("1_0yfa1")
+
+[node name="StaticBody" type="StaticBody3D" parent="."]
+transform = Transform3D(0.066779, 0, 0.997768, 0, 1, 0, -0.997768, 0, 0.066779, 0, 0.530032, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody"]
+transform = Transform3D(1, 0, 3.12924e-07, 0, 1, 0, -3.12924e-07, 0, 1, -0.251782, 0, 1.49012e-08)
+shape = SubResource("BoxShape3D_ov1qh")
+
+[connection signal="input_event" from="StaticBody" to="." method="_on_static_body_input_event"]

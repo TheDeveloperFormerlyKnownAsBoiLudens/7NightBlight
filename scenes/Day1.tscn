@@ -52,7 +52,7 @@ direction = Vector3(2.92, 0, 0)
 initial_velocity_max = 10.0
 gravity = Vector3(0, -9.5, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66cm6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_keqcx"]
 transparency = 1
 albedo_texture = ExtResource("10_rcnyp")
 billboard_mode = 3
@@ -61,7 +61,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_osl3h"]
-material = SubResource("StandardMaterial3D_66cm6")
+material = SubResource("StandardMaterial3D_keqcx")
 size = Vector2(0.1, 0.1)
 
 [node name="Day1" type="Node3D"]
@@ -129,7 +129,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 206.695, 0, 262.86)
 
 [node name="Doge" parent="." instance=ExtResource("12_5pnfk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225.548, 5.15301, 232.317)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225.548, 0.390148, 232.317)
 
 [node name="DogeBeehaveTree" parent="Doge" node_paths=PackedStringArray("player") instance=ExtResource("13_tmhh6")]
 player = NodePath("../../Player")
