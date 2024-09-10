@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://chfhb77a6wbs4"]
+[gd_scene load_steps=4 format=3 uid="uid://chfhb77a6wbs4"]
 
 [ext_resource type="Script" path="res://objectives/interactable.gd" id="1_5qesy"]
+[ext_resource type="Texture2D" uid="uid://dmu7frm4qqpd8" path="res://sprites/tent.png" id="2_1wo5f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uanmh"]
 
@@ -9,12 +10,15 @@ collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_5qesy")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
 shape = SubResource("BoxShape3D_uanmh")
+
+[node name="TentSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.434217, 0)
+pixel_size = 0.0015
+billboard = 1
+texture = ExtResource("2_1wo5f")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

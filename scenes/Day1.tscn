@@ -129,7 +129,9 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 206.695, 0, 262.86)
 
 [node name="Doge" parent="." instance=ExtResource("12_5pnfk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225.548, 0.390148, 232.317)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 210.154, 0.390148, 259.065)
+movement_speed = 5.0
 
 [node name="DogeBeehaveTree" parent="Doge" node_paths=PackedStringArray("player") instance=ExtResource("13_tmhh6")]
 player = NodePath("../../Player")

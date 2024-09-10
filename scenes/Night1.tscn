@@ -103,3 +103,15 @@ draw_pass_1 = SubResource("QuadMesh_1su2w")
 
 [node name="Doge" parent="." instance=ExtResource("3_iebws")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09359, 0, 0)
+
+[node name="DialogLabel" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -108.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+bbcode_enabled = true

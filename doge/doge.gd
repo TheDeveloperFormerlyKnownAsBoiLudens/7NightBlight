@@ -8,6 +8,7 @@ extends CharacterBody3D
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var detection_area: Area3D = $DetectionArea
 @onready var alert_sprite: Sprite3D = $AlertSprite
+@onready var cart: Node3D = $Cart
 
 var movement_target_position: Vector3
 var point_of_interest: Area3D
@@ -59,3 +60,6 @@ func check_detection_area() -> bool:
 		return true
 	else:
 		return false
+
+func add_to_cart(object: Area3D) -> void:
+	object.reparent(cart)

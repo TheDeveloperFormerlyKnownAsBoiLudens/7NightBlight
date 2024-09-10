@@ -1,13 +1,12 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-
 
 @onready var context_label: Label3D = $Label3D
 @onready var interact_area: Area3D = $InteractArea
 @onready var inventory: Node = $Inventory
+@onready var doge: CharacterBody3D = %Doge
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -49,5 +48,6 @@ func _input(event: InputEvent) -> void:
 			if distance < closest_distance:
 				closest_distance = distance
 				closest_area = area
-		closest_area.reparent(inventory)
+		
 		closest_area.monitorable = false
+		doge.add_to_cart(closest_area)
