@@ -50,6 +50,15 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14409, 0)
 script = ExtResource("1_x0tuo")
 
+[node name="RayCast3D" type="RayCast3D" parent="PlayerCamera"]
+target_position = Vector3(0, 0, -3.205)
+
+[node name="Flashlight" type="SpotLight3D" parent="PlayerCamera"]
+light_energy = 1.162
+light_specular = 0.0
+spot_attenuation = 0.19
+spot_angle = 17.73
+
 [node name="Tent" type="Node3D" parent="."]
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="Tent"]

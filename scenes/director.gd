@@ -4,7 +4,7 @@ extends Node
 @onready var snow_particles: GPUParticles3D = %SnowParticles
 
 
-var current_scene: Node2D = null
+var current_scene: Node3D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
