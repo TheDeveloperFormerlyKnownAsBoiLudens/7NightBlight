@@ -27,9 +27,10 @@ font_size = 137
 [node name="Smoothing" type="Node3D" parent="."]
 script = ExtResource("2_6tkta")
 
-[node name="Sprite3D" type="Sprite3D" parent="Smoothing"]
+[node name="PlayerSprite" type="Sprite3D" parent="Smoothing"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 pixel_size = 0.0013
+billboard = 1
 texture = ExtResource("2_kmeoq")
 
 [node name="Inventory" type="Node" parent="."]

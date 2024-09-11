@@ -3,6 +3,7 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+@onready var player_sprite: Sprite3D = $Smoothing/PlayerSprite
 @onready var context_label: Label3D = $Label3D
 @onready var interact_area: Area3D = $InteractArea
 @onready var inventory: Node = $Inventory
@@ -27,7 +28,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+	if velocity.x > 0:
+		player_sprite.flip_h = true
+	elif velocity.x < 0:
+		player_sprite.flip_h = false
 	move_and_slide()
 
 func enable_context_label() -> void:

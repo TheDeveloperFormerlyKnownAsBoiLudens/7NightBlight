@@ -1,32 +1,32 @@
 [gd_scene load_steps=22 format=3 uid="uid://djwx64ak1b3vl"]
 
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_b20tk"]
-[ext_resource type="Script" path="res://scenes/director.gd" id="1_nhjrv"]
-[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="2_h1gtu"]
-[ext_resource type="Resource" path="res://terrain/data.hterrain" id="3_8hsxx"]
-[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="4_5jejk"]
-[ext_resource type="PackedScene" uid="uid://haphddplmahb" path="res://player/player.tscn" id="5_a7us4"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_jk8q5"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_sogo7"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="8_awftb"]
-[ext_resource type="PackedScene" uid="uid://chfhb77a6wbs4" path="res://objectives/tent.tscn" id="9_2upes"]
-[ext_resource type="Texture2D" uid="uid://10t3whxc6txg" path="res://sprites/snowflake.png" id="10_rcnyp"]
-[ext_resource type="PackedScene" uid="uid://ckj7lcsbgpuea" path="res://doge/doge.tscn" id="12_5pnfk"]
-[ext_resource type="PackedScene" uid="uid://imyouhg8q6sl" path="res://doge/doge_ai/doge_beehave_tree.tscn" id="13_tmhh6"]
+[ext_resource type="Script" path="res://scenes/director.gd" id="1_4ugry"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="2_te4t1"]
+[ext_resource type="Resource" path="res://terrain/data.hterrain" id="3_8vnl3"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="4_5ekks"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_vwer1"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_mla0v"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_bgoxt"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="8_xhlre"]
+[ext_resource type="Texture2D" uid="uid://10t3whxc6txg" path="res://sprites/snowflake.png" id="9_fscx2"]
+[ext_resource type="PackedScene" uid="uid://haphddplmahb" path="res://player/player.tscn" id="10_ieprl"]
+[ext_resource type="PackedScene" uid="uid://ckj7lcsbgpuea" path="res://doge/doge.tscn" id="11_w61ln"]
+[ext_resource type="PackedScene" uid="uid://imyouhg8q6sl" path="res://doge/doge_ai/doge_beehave_tree.tscn" id="12_2fg54"]
+[ext_resource type="PackedScene" uid="uid://chfhb77a6wbs4" path="res://objectives/tent.tscn" id="13_girj2"]
 
 [sub_resource type="Resource" id="Resource_6b4ru"]
-script = ExtResource("4_5jejk")
+script = ExtResource("4_5ekks")
 mode = 0
 textures = [[], []]
 
 [sub_resource type="Resource" id="Resource_wjk0l"]
-script = ExtResource("7_sogo7")
+script = ExtResource("7_bgoxt")
 duration = 1.0
 transition = 1
 ease = 2
 
 [sub_resource type="Resource" id="Resource_g37gh"]
-script = ExtResource("8_awftb")
+script = ExtResource("8_xhlre")
 cull_mask = 1048575
 h_offset = 0.0
 v_offset = 0.0
@@ -54,7 +54,7 @@ gravity = Vector3(0, -9.5, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_keqcx"]
 transparency = 1
-albedo_texture = ExtResource("10_rcnyp")
+albedo_texture = ExtResource("9_fscx2")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -67,11 +67,12 @@ size = Vector2(0.1, 0.1)
 [node name="Day1" type="Node3D"]
 
 [node name="Director" type="Node" parent="."]
-script = ExtResource("1_nhjrv")
+script = ExtResource("1_4ugry")
 
 [node name="HTerrain" type="Node3D" parent="."]
-script = ExtResource("2_h1gtu")
-_terrain_data = ExtResource("3_8hsxx")
+script = ExtResource("2_te4t1")
+centered = true
+_terrain_data = ExtResource("3_8vnl3")
 chunk_size = 64
 collision_enabled = true
 collision_layer = 2
@@ -88,16 +89,16 @@ shader_params/u_triplanar = null
 shader_params/u_tile_reduction = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, 206.695, 3.50376, 266.434)
+transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, -41.384, 3.50376, 22.0117)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
-script = ExtResource("1_b20tk")
+script = ExtResource("5_vwer1")
 
 [node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, 206.695, 3.50376, 266.434)
-script = ExtResource("6_jk8q5")
+transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, -41.384, 3.50376, 22.0117)
+script = ExtResource("6_mla0v")
 follow_mode = 5
-follow_target = NodePath("../Player/Smoothing/Sprite3D")
+follow_target = NodePath("../Player/Smoothing/PlayerSprite")
 tween_resource = SubResource("Resource_wjk0l")
 camera_3d_resource = SubResource("Resource_g37gh")
 follow_offset = Vector3(0, 1.93, 2.755)
@@ -106,6 +107,7 @@ follow_damping_value = Vector3(0.17, 0.1, 0.1)
 dead_zone_width = 0.1
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -248.079, 0, -244.422)
 navigation_mesh = SubResource("NavigationMesh_se4od")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="NavigationRegion3D"]
@@ -115,28 +117,28 @@ mesh = SubResource("PlaneMesh_20l3x")
 
 [node name="SnowParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 207.058, 5.64632, 263.287)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.0211, 5.64632, 18.8646)
 amount = 400
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_30vea")
 draw_pass_1 = SubResource("QuadMesh_osl3h")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.939094, 0.34366, 0, -0.34366, 0.939094, 0, 158.68, 0)
+transform = Transform3D(1, 0, 0, 0, 0.939094, 0.34366, 0, -0.34366, 0.939094, -248.079, 158.68, 41.6701)
 
-[node name="Player" parent="." instance=ExtResource("5_a7us4")]
+[node name="Player" parent="." instance=ExtResource("10_ieprl")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 206.695, 0, 262.86)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.384, 0, 18.4376)
 
-[node name="Doge" parent="." instance=ExtResource("12_5pnfk")]
+[node name="Doge" parent="." instance=ExtResource("11_w61ln")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 210.154, 0.390148, 259.065)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.925, 0.390148, 14.6427)
 movement_speed = 5.0
 
-[node name="DogeBeehaveTree" parent="Doge" node_paths=PackedStringArray("player") instance=ExtResource("13_tmhh6")]
+[node name="DogeBeehaveTree" parent="Doge" node_paths=PackedStringArray("player") instance=ExtResource("12_2fg54")]
 player = NodePath("../../Player")
 
-[node name="Tent" parent="." instance=ExtResource("9_2upes")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.629, 0, 243.171)
+[node name="Tent" parent="." instance=ExtResource("13_girj2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.1069, 0, 7.74866)
 
 [editable path="Player"]

@@ -42,8 +42,10 @@ func _physics_process(_delta: float) -> void:
 	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
 	if velocity.x > 0:
 		doge_sprite.flip_h = true
+		cart.position.x = -0.5
 	elif velocity.x < 0:
 		doge_sprite.flip_h = false
+		cart.position.x = 1.047
 	move_and_slide()
 
 func check_detection_area() -> bool:
@@ -61,5 +63,7 @@ func check_detection_area() -> bool:
 	else:
 		return false
 
+# TODO: think about refactoring this to interactable instead
 func add_to_cart(object: Area3D) -> void:
 	object.reparent(cart)
+	object.global_position = cart.global_position
