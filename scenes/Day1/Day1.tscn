@@ -1,6 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://djwx64ak1b3vl"]
+[gd_scene load_steps=28 format=3 uid="uid://djwx64ak1b3vl"]
 
-[ext_resource type="Script" path="res://scenes/director.gd" id="1_4ugry"]
+[ext_resource type="Script" path="res://scenes/Day1/day_1.gd" id="1_5x117"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="2_te4t1"]
 [ext_resource type="Resource" path="res://terrain/data.hterrain" id="3_8vnl3"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="4_5ekks"]
@@ -13,6 +13,22 @@
 [ext_resource type="PackedScene" uid="uid://ckj7lcsbgpuea" path="res://doge/doge.tscn" id="11_w61ln"]
 [ext_resource type="PackedScene" uid="uid://imyouhg8q6sl" path="res://doge/doge_ai/doge_beehave_tree.tscn" id="12_2fg54"]
 [ext_resource type="PackedScene" uid="uid://chfhb77a6wbs4" path="res://objectives/tent.tscn" id="13_girj2"]
+[ext_resource type="Texture2D" uid="uid://cm0nrtxupv3m" path="res://sprites/timer.png" id="14_r4qwr"]
+[ext_resource type="Texture2D" uid="uid://byy1t7xw37mu0" path="res://sprites/timerARM.png" id="15_1knig"]
+[ext_resource type="Script" path="res://scenes/Day1/timer.gd" id="15_lsx5q"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_640ih"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_tekma"]
+sky_material = SubResource("ProceduralSkyMaterial_640ih")
+
+[sub_resource type="Environment" id="Environment_b075h"]
+background_mode = 2
+sky = SubResource("Sky_tekma")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="Resource" id="Resource_6b4ru"]
 script = ExtResource("4_5ekks")
@@ -65,9 +81,10 @@ material = SubResource("StandardMaterial3D_keqcx")
 size = Vector2(0.1, 0.1)
 
 [node name="Day1" type="Node3D"]
+script = ExtResource("1_5x117")
 
-[node name="Director" type="Node" parent="."]
-script = ExtResource("1_4ugry")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_b075h")
 
 [node name="HTerrain" type="Node3D" parent="."]
 script = ExtResource("2_te4t1")
@@ -89,13 +106,13 @@ shader_params/u_triplanar = null
 shader_params/u_tile_reduction = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, -41.384, 3.50376, 22.0117)
+transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, -41.384, 3.50376, 22.0116)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 script = ExtResource("5_vwer1")
 
 [node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, -41.384, 3.50376, 22.0117)
+transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, -41.384, 3.50376, 22.0116)
 script = ExtResource("6_mla0v")
 follow_mode = 5
 follow_target = NodePath("../Player/Smoothing/PlayerSprite")
@@ -140,5 +157,24 @@ player = NodePath("../../Player")
 
 [node name="Tent" parent="." instance=ExtResource("13_girj2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.1069, 0, 7.74866)
+
+[node name="ControlTimer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="TimerSprite" type="Sprite2D" parent="ControlTimer"]
+position = Vector2(0, 82.575)
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("14_r4qwr")
+script = ExtResource("15_lsx5q")
+
+[node name="ArmSprite" type="Sprite2D" parent="ControlTimer/TimerSprite"]
+texture = ExtResource("15_1knig")
 
 [editable path="Player"]

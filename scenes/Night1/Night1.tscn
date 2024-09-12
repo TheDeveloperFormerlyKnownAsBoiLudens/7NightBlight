@@ -1,8 +1,24 @@
-[gd_scene load_steps=11 format=3 uid="uid://buhid45ri3w31"]
+[gd_scene load_steps=14 format=3 uid="uid://buhid45ri3w31"]
 
 [ext_resource type="Script" path="res://player/player_night.gd" id="1_x0tuo"]
 [ext_resource type="Texture2D" uid="uid://10t3whxc6txg" path="res://sprites/snowflake.png" id="2_gel1j"]
 [ext_resource type="PackedScene" uid="uid://bl7gcnio8q63d" path="res://doge/night_doge.tscn" id="3_iebws"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4o688"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.55, 0.54225, 0.53325, 1)
+sky_energy_multiplier = 0.0
+ground_horizon_color = Color(0.55, 0.54225, 0.53325, 1)
+
+[sub_resource type="Sky" id="Sky_kjihx"]
+sky_material = SubResource("ProceduralSkyMaterial_4o688")
+
+[sub_resource type="Environment" id="Environment_r4gmq"]
+background_mode = 2
+sky = SubResource("Sky_kjihx")
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_786e7"]
 size = Vector2(5, 5)
@@ -40,10 +56,12 @@ size = Vector2(0.1, 0.1)
 
 [node name="Night1" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r4gmq")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.496974, -0.642845, 0.582896, 0, 0.671721, 0.740805, -0.867765, 0.368161, -0.333828, 0, 0, 0)
-light_color = Color(0.0386105, 4.69275e-07, 0.282167, 1)
-light_energy = 12.578
+transform = Transform3D(-0.49697, -0.75151, 0.433882, 0, 0.499998, 0.866027, -0.867768, 0.430389, -0.248484, 0, 0, 0)
+light_energy = 0.0
 shadow_enabled = true
 
 [node name="PlayerCamera" type="Camera3D" parent="."]

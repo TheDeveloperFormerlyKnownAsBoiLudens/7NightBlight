@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
 BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
+GameManager="*res://autoload/game_manager.gd"
 
 [debug]
 
@@ -70,7 +71,3 @@ select={
 3d_physics/layer_4="Enemies"
 3d_physics/layer_5="Interactables"
 3d_physics/layer_6="Allies"
-
-[rendering]
-
-renderer/rendering_method="mobile"

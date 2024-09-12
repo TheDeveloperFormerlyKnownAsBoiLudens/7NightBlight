@@ -1,20 +1,11 @@
 extends Node
 
-@onready var player: CharacterBody3D = %Player
-@onready var snow_particles: GPUParticles3D = %SnowParticles
-
-
 var current_scene: Node3D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var root: Node = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
-
-func _physics_process(delta: float) -> void:
-	snow_particles.global_position = player.global_position
-	snow_particles.global_position.y = player.global_position.y + 5
-
 
 func change_scene(path: String) -> void:
 	call_deferred("_deferred_goto_scene", path)
