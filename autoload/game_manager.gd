@@ -32,9 +32,6 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		get_tree().quit() # default behavior
 
-
-# game_manager.change_scene("res://scenes/Night1/Night1.tscn")	
-
 # func _input(event) -> void:
 # 	if event is InputEventKey:
 # 		last_used_input = InputMethod.KEYBOARD

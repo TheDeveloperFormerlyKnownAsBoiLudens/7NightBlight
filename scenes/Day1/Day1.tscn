@@ -1,6 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://djwx64ak1b3vl"]
+[gd_scene load_steps=32 format=3 uid="uid://djwx64ak1b3vl"]
 
 [ext_resource type="Script" path="res://scenes/Day1/day_1.gd" id="1_5x117"]
+[ext_resource type="Script" path="res://scenes/Day1/director.gd" id="2_ahoo3"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="2_te4t1"]
 [ext_resource type="Resource" path="res://terrain/data.hterrain" id="3_8vnl3"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="4_5ekks"]
@@ -18,7 +19,8 @@
 [ext_resource type="Script" path="res://scenes/Day1/timer.gd" id="15_lsx5q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_640ih"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_top_color = Color(0.29862, 0.113927, 0, 1)
+sky_horizon_color = Color(0.463899, 0.193506, 0, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
 [sub_resource type="Sky" id="Sky_tekma"]
@@ -29,6 +31,113 @@ background_mode = 2
 sky = SubResource("Sky_tekma")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="Animation" id="Animation_yjulk"]
+resource_name = "game_over"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UserInterface/GameOverLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667, 1.96667, 3, 3.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["", "[font_size=80][center]
+The Night Came
+
+[/center]
+[/font_size]", "[font_size=80][center]
+The Night Came
+And You Went
+[/center]
+[/font_size]", "[font_size=80][center]
+The Night Came
+And You Went
+Skies Are Empty
+[/center]
+[/font_size]", "[font_size=80][center]
+The Night Came
+And You Went
+Skies Are Empty
+Only Silence Fills
+[/center]
+[/font_size]"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UserInterface/GameOverLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UserInterface/TimerSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_5h8yo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UserInterface/GameOverLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["[font_size=80][center]
+
+[/center]
+[/font_size]"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UserInterface/GameOverLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UserInterface/TimerSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dw2h3"]
+_data = {
+"RESET": SubResource("Animation_5h8yo"),
+"game_over": SubResource("Animation_yjulk")
+}
 
 [sub_resource type="Resource" id="Resource_6b4ru"]
 script = ExtResource("4_5ekks")
@@ -85,6 +194,48 @@ script = ExtResource("1_5x117")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_b075h")
+
+[node name="Director" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_ahoo3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_dw2h3")
+}
+
+[node name="UserInterface" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverLabel" type="RichTextLabel" parent="UserInterface"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font_size=80][center]
+
+[/center]
+[/font_size]"
+
+[node name="TimerSprite" type="Sprite2D" parent="UserInterface"]
+position = Vector2(556, 82.575)
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("14_r4qwr")
+script = ExtResource("15_lsx5q")
+
+[node name="ArmSprite" type="Sprite2D" parent="UserInterface/TimerSprite"]
+texture = ExtResource("15_1knig")
 
 [node name="HTerrain" type="Node3D" parent="."]
 script = ExtResource("2_te4t1")
@@ -157,24 +308,5 @@ player = NodePath("../../Player")
 
 [node name="Tent" parent="." instance=ExtResource("13_girj2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.1069, 0, 7.74866)
-
-[node name="ControlTimer" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
-grow_horizontal = 2
-
-[node name="TimerSprite" type="Sprite2D" parent="ControlTimer"]
-position = Vector2(0, 82.575)
-scale = Vector2(0.11, 0.11)
-texture = ExtResource("14_r4qwr")
-script = ExtResource("15_lsx5q")
-
-[node name="ArmSprite" type="Sprite2D" parent="ControlTimer/TimerSprite"]
-texture = ExtResource("15_1knig")
 
 [editable path="Player"]
