@@ -9,6 +9,7 @@ var timer: float = 0
 func _ready() -> void:
 	pass # Replace with function body.
 
+# TODO: Texture progress bar might be ideal here
 # TODO: factor this out to a timer instead or full rotation
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
