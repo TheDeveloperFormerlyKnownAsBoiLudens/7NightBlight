@@ -63,52 +63,17 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
-
-[sub_resource type="Animation" id="Animation_yjulk"]
-resource_name = "game_over"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UserInterface/GameOverLabel:text")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.966667, 1.96667, 3, 3.96667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": ["", "[font_size=80][center]
-The Night Came
-
-[/center]
-[/font_size]", "[font_size=80][center]
-The Night Came
-And You Went
-[/center]
-[/font_size]", "[font_size=80][center]
-The Night Came
-And You Went
-Skies Are Empty
-[/center]
-[/font_size]", "[font_size=80][center]
-The Night Came
-And You Went
-Skies Are Empty
-Only Silence Fills
-[/center]
-[/font_size]"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UserInterface/GameOverLabel:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UserInterface/GameWinLabel:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [""]
 }
 
 [sub_resource type="Animation" id="Animation_xydkl"]
@@ -121,8 +86,8 @@ tracks/0/path = NodePath("UserInterface/GameWinLabel:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.966667, 1.96667, 3, 3.96667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.966667, 1.96667, 3, 3.96667, 4.86667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": ["", "[font_size=80][center]
 The Night Left
@@ -143,7 +108,7 @@ And You Went
 Skies Are Full
 Time To Leave
 [/center]
-[/font_size]"]
+[/font_size]", "[center]TIME TO QUIT[/center]"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -158,10 +123,64 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_ap44i"]
+resource_name = "game_over_2"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UserInterface/GameOverLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667, 1.96667, 3, 3.96667, 4.93333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["", "[font_size=80][center]
+The Night Came
+
+[/center]
+[/font_size]", "[font_size=80][center]
+The Night Came
+And You Went
+[/center]
+[/font_size]", "[font_size=80][center]
+The Night Came
+And You Went
+Skies Are Empty
+[/center]
+[/font_size]", "[font_size=80][center]
+The Night Came
+And You Went
+Skies Are Empty
+Only Silence Fills
+[/center]
+[/font_size]", "[font_size=80][center]
+The Night Came
+And You Went
+Skies Are Empty
+Only Silence Fills
+GAME OVER
+[/center]
+[/font_size]"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UserInterface/GameOverLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dw2h3"]
 _data = {
 "RESET": SubResource("Animation_5h8yo"),
-"game_over": SubResource("Animation_yjulk"),
+"game_over": SubResource("Animation_ap44i"),
 "game_win": SubResource("Animation_xydkl")
 }
 
@@ -173,7 +192,7 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("Enemies/Ghost")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(2.86667, 1, 0, 0, -3.93804, 6.76667, 1, 0.925647, 1.65036, -3.46909)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -3.93804)
 
 [sub_resource type="Animation" id="Animation_xwuaj"]
 resource_name = "haunting"
@@ -185,52 +204,22 @@ tracks/0/path = NodePath("Enemies/Ghost")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(2.93333, 1, 0, 0, -3.93804, 5.03333, 1, 0.924122, 1.60786, -3.93804)
-tracks/1/type = "position_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Enemies/Ghost2")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(7.66667, 1, 0, 0, 3.92356, 9.96667, 1, -0.869441, 1.88108, 3.69185)
-tracks/2/type = "position_3d"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Enemies/Ghost3")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(15.5667, 1, -2.77899, 0, 0, 21, 1, -2.06313, 0.510356, 0.983314)
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("GameOverPlayer:current_animation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("GameOverPlayer")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(29.6667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"game_over", -1, 1.0, false],
-"method": &"play"
-}]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8kry1"]
 _data = {
 "RESET": SubResource("Animation_nvk3r"),
 "haunting": SubResource("Animation_xwuaj")
 }
+
+[sub_resource type="Animation" id="Animation_80db8"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ghost2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -2.03906, 0, 0)
 
 [sub_resource type="Animation" id="Animation_2alea"]
 resource_name = "haunting"
@@ -243,21 +232,21 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(11.7333, 1, -2.03906, 0, 3.44496, 19.0333, 1, -1.06681, 1.58102, 3.15278)
 
-[sub_resource type="Animation" id="Animation_80db8"]
-length = 0.001
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Ghost2")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -2.03906, 0, 0)
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8g25d"]
 _data = {
 "RESET": SubResource("Animation_80db8"),
 "haunting": SubResource("Animation_2alea")
 }
+
+[sub_resource type="Animation" id="Animation_8ieok"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ghost3")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_3ugtj"]
 resource_name = "haunting"
@@ -269,16 +258,6 @@ tracks/0/path = NodePath("Ghost3")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(22.1667, 1, -2.41358, 0, 0, 26.8667, 1, -1.88817, 0.516722, 0.942888)
-
-[sub_resource type="Animation" id="Animation_8ieok"]
-length = 0.001
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Ghost3")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n81f2"]
 _data = {
@@ -386,6 +365,20 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 1
 bbcode_enabled = true
+
+[node name="ControlsLabel" type="RichTextLabel" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = 220.0
+grow_vertical = 0
+bbcode_enabled = true
+text = "[center]
+W/D to Turn
+Click to Banish Ghost
+[/center]"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.49697, -0.75151, 0.433882, 0, 0.499998, 0.866027, -0.867768, 0.430389, -0.248484, 0, 0, 0)

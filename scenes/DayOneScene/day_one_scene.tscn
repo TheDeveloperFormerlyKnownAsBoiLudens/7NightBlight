@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://djwx64ak1b3vl"]
+[gd_scene load_steps=36 format=3 uid="uid://djwx64ak1b3vl"]
 
 [ext_resource type="Script" path="res://scenes/DayOneScene/day_one.gd" id="1_lo0ub"]
 [ext_resource type="Script" path="res://scenes/DayOneScene/director.gd" id="2_psxfw"]
@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://ckj7lcsbgpuea" path="res://doge/doge.tscn" id="15_yjwga"]
 [ext_resource type="PackedScene" uid="uid://imyouhg8q6sl" path="res://doge/doge_ai/doge_beehave_tree.tscn" id="16_b8ex4"]
 [ext_resource type="PackedScene" uid="uid://chfhb77a6wbs4" path="res://objectives/tent.tscn" id="17_fm0md"]
+[ext_resource type="PackedScene" uid="uid://63wx6btpx2n7" path="res://interactables/candle/candle.tscn" id="19_84og5"]
+[ext_resource type="Texture2D" uid="uid://yahxa048nven" path="res://sprites/Supplies.png" id="19_ks75v"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_640ih"]
 sky_top_color = Color(0.29862, 0.113927, 0, 1)
@@ -87,8 +89,8 @@ tracks/0/path = NodePath("UserInterface/GameOverLabel:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.966667, 1.96667, 3, 3.96667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.966667, 1.96667, 3, 3.96667, 4.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": ["", "[font_size=80][center]
 The Night Came
@@ -108,6 +110,9 @@ The Night Came
 And You Went
 Skies Are Empty
 Only Silence Fills
+[/center]
+[/font_size]", "[font_size=80][center]
+GAME OVER
 [/center]
 [/font_size]"]
 }
@@ -192,8 +197,12 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_keqcx")
 size = Vector2(0.1, 0.1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_okq13"]
+size = Vector3(5, 5, 5)
+
 [node name="DayOneScene" type="Node3D"]
 script = ExtResource("1_lo0ub")
+next_scene = ExtResource("5_jp1df")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_b075h")
@@ -236,7 +245,6 @@ position = Vector2(556, 82.575)
 scale = Vector2(0.11, 0.11)
 texture = ExtResource("3_gj5vf")
 script = ExtResource("4_owkv3")
-next_scene = ExtResource("5_jp1df")
 
 [node name="ArmSprite" type="Sprite2D" parent="UserInterface/TimerSprite"]
 texture = ExtResource("5_rtij8")
@@ -261,13 +269,13 @@ shader_params/u_triplanar = null
 shader_params/u_tile_reduction = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, -41.384, 3.50376, 22.0116)
+transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, -41.384, 3.50376, 132.382)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 script = ExtResource("9_x4pck")
 
 [node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, -41.384, 3.50376, 22.0116)
+transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, -41.384, 3.50376, 132.382)
 script = ExtResource("10_mjcuf")
 follow_mode = 5
 follow_target = NodePath("../Player/Smoothing/PlayerSprite")
@@ -300,11 +308,11 @@ transform = Transform3D(1, 0, 0, 0, 0.939094, 0.34366, 0, -0.34366, 0.939094, -2
 
 [node name="Player" parent="." instance=ExtResource("14_u5454")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.384, 0, 18.4376)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.384, 0, 128.808)
 
 [node name="Doge" parent="." instance=ExtResource("15_yjwga")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.925, 0.390148, 14.6427)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.925, 0.390148, 125.014)
 movement_speed = 5.0
 
 [node name="DogeBeehaveTree" parent="Doge" node_paths=PackedStringArray("player") instance=ExtResource("16_b8ex4")]
@@ -312,5 +320,53 @@ player = NodePath("../../Player")
 
 [node name="Tent" parent="." instance=ExtResource("17_fm0md")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.1069, 0, 7.74866)
+
+[node name="Supplies" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.13385, 0.253948, -19.328)
+texture = ExtResource("19_ks75v")
+
+[node name="Supplies2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.04023, 0.253948, -19.328)
+texture = ExtResource("19_ks75v")
+
+[node name="Candles" type="Node3D" parent="."]
+
+[node name="Candle" parent="Candles" instance=ExtResource("19_84og5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.20384, 0, 103.044)
+
+[node name="Candle2" parent="Candles" instance=ExtResource("19_84og5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.358, 0, 58.9001)
+
+[node name="Candle3" parent="Candles" instance=ExtResource("19_84og5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4331, 0, 36.3877)
+
+[node name="Candle7" parent="Candles" instance=ExtResource("19_84og5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.9372, 0, -1.40411)
+
+[node name="Candle8" parent="Candles" instance=ExtResource("19_84og5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2679, 0, 46.3434)
+
+[node name="Candle9" parent="Candles" instance=ExtResource("19_84og5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.8798, 0, 84.8696)
+
+[node name="Candle10" parent="Candles" instance=ExtResource("19_84og5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.0469, 0, 116.15)
+
+[node name="Candle12" parent="Candles" instance=ExtResource("19_84og5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3238, 1.90735e-06, 71.9958)
+
+[node name="Candle11" parent="Candles" instance=ExtResource("19_84og5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.83706, 0, -16.392)
+
+[node name="Goal" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.70225, 0.302903, -18.3047)
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goal"]
+shape = SubResource("BoxShape3D_okq13")
+
+[connection signal="body_entered" from="Goal" to="." method="_on_goal_body_entered"]
 
 [editable path="Player"]

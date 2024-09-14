@@ -46,3 +46,7 @@ shape = SubResource("BoxShape3D_u212e")
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.97424, 0)
 visible = false
 texture = ExtResource("3_86hfr")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="AlertSprite"]
+light_color = Color(0.776471, 0, 0, 1)
+light_energy = 10.0
