@@ -71,5 +71,7 @@ func check_detection_area() -> bool:
 # TODO: think about refactoring this to interactable instead
 func add_to_cart(object: Area3D) -> void:
 	director.add_to_inventory(object)
+	object.monitorable = false
+	object.monitoring = false
 	object.reparent(cart)
 	object.global_position = cart.global_position

@@ -52,6 +52,4 @@ func _input(event: InputEvent) -> void:
 			if distance < closest_distance:
 				closest_distance = distance
 				closest_area = area
-		
-		closest_area.monitorable = false
 		doge.add_to_cart(closest_area)

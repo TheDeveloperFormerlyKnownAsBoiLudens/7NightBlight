@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://djwx64ak1b3vl"]
+[gd_scene load_steps=33 format=3 uid="uid://djwx64ak1b3vl"]
 
 [ext_resource type="Script" path="res://scenes/DayOneScene/day_one.gd" id="1_lo0ub"]
 [ext_resource type="Script" path="res://scenes/DayOneScene/director.gd" id="2_psxfw"]
@@ -32,6 +32,8 @@ background_mode = 2
 sky = SubResource("Sky_tekma")
 tonemap_mode = 2
 glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.4
 
 [sub_resource type="Animation" id="Animation_5h8yo"]
 length = 0.001
@@ -140,9 +142,6 @@ _data = {
 "game_over": SubResource("Animation_yjulk")
 }
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_fr1tn"]
-specular_color = Color(0, 0, 0, 1)
-
 [sub_resource type="Resource" id="Resource_6b4ru"]
 script = ExtResource("8_fxhu7")
 mode = 0
@@ -217,15 +216,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="UserInterface"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CanvasTexture_fr1tn")
 
 [node name="GameOverLabel" type="RichTextLabel" parent="UserInterface"]
 visible = false
