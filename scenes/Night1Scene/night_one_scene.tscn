@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://buhid45ri3w31"]
+[gd_scene load_steps=18 format=3 uid="uid://buhid45ri3w31"]
 
 [ext_resource type="Script" path="res://player/player_night.gd" id="1_ojx61"]
 [ext_resource type="Texture2D" uid="uid://10t3whxc6txg" path="res://sprites/snowflake.png" id="2_a765r"]
 [ext_resource type="PackedScene" uid="uid://bl7gcnio8q63d" path="res://doge/night_doge.tscn" id="3_3r03g"]
+[ext_resource type="PackedScene" uid="uid://crj1fl50mhsrb" path="res://enemies/ghost/ghost.tscn" id="4_8tf3w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4o688"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -19,6 +20,61 @@ sky = SubResource("Sky_kjihx")
 tonemap_mode = 2
 ssao_enabled = true
 glow_enabled = true
+
+[sub_resource type="Animation" id="Animation_xwuaj"]
+resource_name = "haunting"
+length = 30.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemies/Ghost")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(2.93333, 1, 0, 0, -3.93804, 5.03333, 1, 0.924122, 1.60786, -3.93804)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemies/Ghost2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(7.66667, 1, 0, 0, 3.92356, 9.96667, 1, -0.869441, 1.88108, 3.69185)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Enemies/Ghost3")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(15.5667, 1, -2.77899, 0, 0, 21, 1, -2.06313, 0.510356, 0.983314)
+
+[sub_resource type="Animation" id="Animation_nvk3r"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemies/Ghost")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -3.93804)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemies/Ghost2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 3.92356)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Enemies/Ghost3")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -2.77899, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8kry1"]
+_data = {
+"RESET": SubResource("Animation_nvk3r"),
+"haunting": SubResource("Animation_xwuaj")
+}
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_786e7"]
 size = Vector2(5, 5)
@@ -76,6 +132,23 @@ light_energy = 1.162
 light_specular = 0.0
 spot_attenuation = 0.19
 spot_angle = 17.73
+
+[node name="SpookyPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8kry1")
+}
+autoplay = "haunting"
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Ghost" parent="Enemies" instance=ExtResource("4_8tf3w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.93804)
+
+[node name="Ghost2" parent="Enemies" instance=ExtResource("4_8tf3w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.92356)
+
+[node name="Ghost3" parent="Enemies" instance=ExtResource("4_8tf3w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77899, 0, 0)
 
 [node name="Tent" type="Node3D" parent="."]
 

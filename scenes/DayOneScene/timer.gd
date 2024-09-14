@@ -1,5 +1,7 @@
 extends Sprite2D
 
+@export var next_scene: Resource
+
 @onready var arm_sprite: Sprite2D = $ArmSprite
 @onready var director: Node = %Director
 
@@ -16,6 +18,6 @@ func _process(delta: float) -> void:
 	timer += delta
 	if timer >= 32:
 		if director.get_from_inventory("Tent"):
-			GameManager.change_scene("res://scenes/Night1/Night1.tscn")
+			GameManager.change_scene(next_scene.resource_path)
 		else:
 			director.game_over()
