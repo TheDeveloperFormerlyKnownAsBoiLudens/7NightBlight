@@ -14,17 +14,21 @@ var movement_target_position: Vector3
 var point_of_interest: Area3D
 
 func _ready() -> void:
+	set_physics_process(false)
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
 	navigation_agent.path_desired_distance = path_desired_distance
 	navigation_agent.target_desired_distance = target_desired_distance
 
 	# Make sure to not await during _ready.
+
 	call_deferred("actor_setup")
 
 func actor_setup() -> void:
 	# Wait for the first physics frame so the NavigationServer can sync.
+	
 	await get_tree().physics_frame
+	set_physics_process(true)
 
 	# Now that the navigation map is no longer empty, set the movement target.
 	set_movement_target(movement_target_position)

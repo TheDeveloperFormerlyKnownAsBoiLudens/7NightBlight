@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bl7gcnio8q63d"]
 
 [ext_resource type="Texture2D" uid="uid://bjpgkumk50i4a" path="res://doge/doge_cart.png" id="1_0yfa1"]
-[ext_resource type="Script" path="res://scenes/Night1/doge.gd" id="2_bb4qk"]
+[ext_resource type="Script" path="res://scenes/Night1Scene/doge.gd" id="2_bb4qk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ov1qh"]
 size = Vector3(1.31831, 1, 1)

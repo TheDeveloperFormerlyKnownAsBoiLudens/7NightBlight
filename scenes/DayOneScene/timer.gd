@@ -9,7 +9,7 @@ var timer: float = 0
 func _ready() -> void:
 	pass # Replace with function body.
 
-
+# TODO: factor this out to a timer instead or full rotation
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	arm_sprite.rotate(delta * .2)

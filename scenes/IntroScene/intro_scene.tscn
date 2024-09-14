@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7u8dcd273pke"]
+
+[ext_resource type="Texture2D" uid="uid://dooppxgomppw" path="res://scenes/IntroScene/title.png" id="1_ejuq8"]
+[ext_resource type="Script" path="res://scenes/IntroScene/intro_scene.gd" id="1_p4ejm"]
+[ext_resource type="PackedScene" uid="uid://djwx64ak1b3vl" path="res://scenes/DayOneScene/day_one_scene.tscn" id="2_0o1l5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ivpif"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_teaek"]
+sky_material = SubResource("ProceduralSkyMaterial_ivpif")
+
+[sub_resource type="Environment" id="Environment_omf4b"]
+background_mode = 2
+sky = SubResource("Sky_teaek")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="IntroScene" type="Node3D"]
+script = ExtResource("1_p4ejm")
+scene_path = ExtResource("2_0o1l5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.496974, -0.751507, 0.433883, 0, 0.5, 0.866025, -0.867765, 0.430392, -0.248487, 0, 0, 0)
+light_color = Color(0, 0, 0, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_omf4b")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = ExtResource("1_ejuq8")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.2933)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -102.0
+offset_right = 576.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "[center]PRESS 'ENTER' TO START[/center]"

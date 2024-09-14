@@ -1,22 +1,22 @@
 [gd_scene load_steps=32 format=3 uid="uid://djwx64ak1b3vl"]
 
-[ext_resource type="Script" path="res://scenes/Day1/day_1.gd" id="1_5x117"]
-[ext_resource type="Script" path="res://scenes/Day1/director.gd" id="2_ahoo3"]
-[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="2_te4t1"]
-[ext_resource type="Resource" path="res://terrain/data.hterrain" id="3_8vnl3"]
-[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="4_5ekks"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_vwer1"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_mla0v"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_bgoxt"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="8_xhlre"]
-[ext_resource type="Texture2D" uid="uid://10t3whxc6txg" path="res://sprites/snowflake.png" id="9_fscx2"]
-[ext_resource type="PackedScene" uid="uid://haphddplmahb" path="res://player/player.tscn" id="10_ieprl"]
-[ext_resource type="PackedScene" uid="uid://ckj7lcsbgpuea" path="res://doge/doge.tscn" id="11_w61ln"]
-[ext_resource type="PackedScene" uid="uid://imyouhg8q6sl" path="res://doge/doge_ai/doge_beehave_tree.tscn" id="12_2fg54"]
-[ext_resource type="PackedScene" uid="uid://chfhb77a6wbs4" path="res://objectives/tent.tscn" id="13_girj2"]
-[ext_resource type="Texture2D" uid="uid://cm0nrtxupv3m" path="res://sprites/timer.png" id="14_r4qwr"]
-[ext_resource type="Texture2D" uid="uid://byy1t7xw37mu0" path="res://sprites/timerARM.png" id="15_1knig"]
-[ext_resource type="Script" path="res://scenes/Day1/timer.gd" id="15_lsx5q"]
+[ext_resource type="Script" path="res://scenes/DayOneScene/day_one.gd" id="1_lo0ub"]
+[ext_resource type="Script" path="res://scenes/DayOneScene/director.gd" id="2_psxfw"]
+[ext_resource type="Texture2D" uid="uid://cm0nrtxupv3m" path="res://scenes/DayOneScene/timer.png" id="3_gj5vf"]
+[ext_resource type="Script" path="res://scenes/DayOneScene/timer.gd" id="4_owkv3"]
+[ext_resource type="Texture2D" uid="uid://byy1t7xw37mu0" path="res://scenes/DayOneScene/timerARM.png" id="5_rtij8"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="6_yq732"]
+[ext_resource type="Resource" path="res://terrain/data.hterrain" id="7_tte23"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="8_fxhu7"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_x4pck"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="10_mjcuf"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="11_u16cb"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="12_gwgeb"]
+[ext_resource type="Texture2D" uid="uid://10t3whxc6txg" path="res://sprites/snowflake.png" id="13_yvr45"]
+[ext_resource type="PackedScene" uid="uid://haphddplmahb" path="res://player/player.tscn" id="14_u5454"]
+[ext_resource type="PackedScene" uid="uid://ckj7lcsbgpuea" path="res://doge/doge.tscn" id="15_yjwga"]
+[ext_resource type="PackedScene" uid="uid://imyouhg8q6sl" path="res://doge/doge_ai/doge_beehave_tree.tscn" id="16_b8ex4"]
+[ext_resource type="PackedScene" uid="uid://chfhb77a6wbs4" path="res://objectives/tent.tscn" id="17_fm0md"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_640ih"]
 sky_top_color = Color(0.29862, 0.113927, 0, 1)
@@ -31,6 +31,48 @@ background_mode = 2
 sky = SubResource("Sky_tekma")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="Animation" id="Animation_5h8yo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UserInterface/GameOverLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["[font_size=80][center]
+
+[/center]
+[/font_size]"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UserInterface/GameOverLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UserInterface/TimerSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_yjulk"]
 resource_name = "game_over"
@@ -91,48 +133,6 @@ tracks/2/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_5h8yo"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UserInterface/GameOverLabel:text")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["[font_size=80][center]
-
-[/center]
-[/font_size]"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UserInterface/GameOverLabel:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("UserInterface/TimerSprite:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dw2h3"]
 _data = {
 "RESET": SubResource("Animation_5h8yo"),
@@ -140,18 +140,18 @@ _data = {
 }
 
 [sub_resource type="Resource" id="Resource_6b4ru"]
-script = ExtResource("4_5ekks")
+script = ExtResource("8_fxhu7")
 mode = 0
 textures = [[], []]
 
 [sub_resource type="Resource" id="Resource_wjk0l"]
-script = ExtResource("7_bgoxt")
+script = ExtResource("11_u16cb")
 duration = 1.0
 transition = 1
 ease = 2
 
 [sub_resource type="Resource" id="Resource_g37gh"]
-script = ExtResource("8_xhlre")
+script = ExtResource("12_gwgeb")
 cull_mask = 1048575
 h_offset = 0.0
 v_offset = 0.0
@@ -179,7 +179,7 @@ gravity = Vector3(0, -9.5, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_keqcx"]
 transparency = 1
-albedo_texture = ExtResource("9_fscx2")
+albedo_texture = ExtResource("13_yvr45")
 billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -189,15 +189,15 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_keqcx")
 size = Vector2(0.1, 0.1)
 
-[node name="Day1" type="Node3D"]
-script = ExtResource("1_5x117")
+[node name="DayOneScene" type="Node3D"]
+script = ExtResource("1_lo0ub")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_b075h")
 
 [node name="Director" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2_ahoo3")
+script = ExtResource("2_psxfw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -231,16 +231,16 @@ text = "[font_size=80][center]
 [node name="TimerSprite" type="Sprite2D" parent="UserInterface"]
 position = Vector2(556, 82.575)
 scale = Vector2(0.11, 0.11)
-texture = ExtResource("14_r4qwr")
-script = ExtResource("15_lsx5q")
+texture = ExtResource("3_gj5vf")
+script = ExtResource("4_owkv3")
 
 [node name="ArmSprite" type="Sprite2D" parent="UserInterface/TimerSprite"]
-texture = ExtResource("15_1knig")
+texture = ExtResource("5_rtij8")
 
 [node name="HTerrain" type="Node3D" parent="."]
-script = ExtResource("2_te4t1")
+script = ExtResource("6_yq732")
 centered = true
-_terrain_data = ExtResource("3_8vnl3")
+_terrain_data = ExtResource("7_tte23")
 chunk_size = 64
 collision_enabled = true
 collision_layer = 2
@@ -260,11 +260,11 @@ shader_params/u_tile_reduction = null
 transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, -41.384, 3.50376, 22.0116)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
-script = ExtResource("5_vwer1")
+script = ExtResource("9_x4pck")
 
 [node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
 transform = Transform3D(1, 0, 0, 0, 0.819023, 0.57376, 0, -0.57376, 0.819023, -41.384, 3.50376, 22.0116)
-script = ExtResource("6_mla0v")
+script = ExtResource("10_mjcuf")
 follow_mode = 5
 follow_target = NodePath("../Player/Smoothing/PlayerSprite")
 tween_resource = SubResource("Resource_wjk0l")
@@ -294,19 +294,19 @@ draw_pass_1 = SubResource("QuadMesh_osl3h")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.939094, 0.34366, 0, -0.34366, 0.939094, -248.079, 158.68, 41.6701)
 
-[node name="Player" parent="." instance=ExtResource("10_ieprl")]
+[node name="Player" parent="." instance=ExtResource("14_u5454")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.384, 0, 18.4376)
 
-[node name="Doge" parent="." instance=ExtResource("11_w61ln")]
+[node name="Doge" parent="." instance=ExtResource("15_yjwga")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.925, 0.390148, 14.6427)
 movement_speed = 5.0
 
-[node name="DogeBeehaveTree" parent="Doge" node_paths=PackedStringArray("player") instance=ExtResource("12_2fg54")]
+[node name="DogeBeehaveTree" parent="Doge" node_paths=PackedStringArray("player") instance=ExtResource("16_b8ex4")]
 player = NodePath("../../Player")
 
-[node name="Tent" parent="." instance=ExtResource("13_girj2")]
+[node name="Tent" parent="." instance=ExtResource("17_fm0md")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.1069, 0, 7.74866)
 
 [editable path="Player"]

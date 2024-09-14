@@ -6,7 +6,8 @@ extends BeehaveTree
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	await get_tree().root.ready
+	# await get_tree().root.ready
+	await get_tree().physics_frame
 	actor = get_parent()
 	walk_to_owner_action.player = player
 	

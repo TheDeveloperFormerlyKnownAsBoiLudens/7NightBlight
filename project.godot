@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="7 Night Blight"
-run/main_scene="res://scenes/Day1/Day1.tscn"
+run/main_scene="res://scenes/IntroScene/intro_scene.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
@@ -28,7 +28,7 @@ gdscript/warnings/untyped_declaration=2
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/smoothing/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/beehave/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/smoothing/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg")
 
 [input]
 
