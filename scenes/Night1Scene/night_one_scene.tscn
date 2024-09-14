@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://buhid45ri3w31"]
+[gd_scene load_steps=22 format=3 uid="uid://buhid45ri3w31"]
 
 [ext_resource type="Script" path="res://player/player_night.gd" id="1_ojx61"]
 [ext_resource type="Texture2D" uid="uid://10t3whxc6txg" path="res://sprites/snowflake.png" id="2_a765r"]
@@ -21,30 +21,88 @@ tonemap_mode = 2
 ssao_enabled = true
 glow_enabled = true
 
-[sub_resource type="Animation" id="Animation_xwuaj"]
-resource_name = "haunting"
-length = 30.0
-tracks/0/type = "position_3d"
+[sub_resource type="Animation" id="Animation_5h8yo"]
+length = 0.001
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Enemies/Ghost")
+tracks/0/path = NodePath("UserInterface/GameOverLabel:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(2.93333, 1, 0, 0, -3.93804, 5.03333, 1, 0.924122, 1.60786, -3.93804)
-tracks/1/type = "position_3d"
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["[font_size=80][center]
+
+[/center]
+[/font_size]"]
+}
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Enemies/Ghost2")
+tracks/1/path = NodePath("UserInterface/GameOverLabel:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(7.66667, 1, 0, 0, 3.92356, 9.96667, 1, -0.869441, 1.88108, 3.69185)
-tracks/2/type = "position_3d"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Enemies/Ghost3")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(15.5667, 1, -2.77899, 0, 0, 21, 1, -2.06313, 0.510356, 0.983314)
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_yjulk"]
+resource_name = "game_over"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UserInterface/GameOverLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667, 1.96667, 3, 3.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["", "[font_size=80][center]
+The Night Came
+
+[/center]
+[/font_size]", "[font_size=80][center]
+The Night Came
+And You Went
+[/center]
+[/font_size]", "[font_size=80][center]
+The Night Came
+And You Went
+Skies Are Empty
+[/center]
+[/font_size]", "[font_size=80][center]
+The Night Came
+And You Went
+Skies Are Empty
+Only Silence Fills
+[/center]
+[/font_size]"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UserInterface/GameOverLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dw2h3"]
+_data = {
+"RESET": SubResource("Animation_5h8yo"),
+"game_over": SubResource("Animation_yjulk")
+}
 
 [sub_resource type="Animation" id="Animation_nvk3r"]
 length = 0.001
@@ -70,6 +128,57 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = PackedFloat32Array(0, 1, -2.77899, 0, 0)
 
+[sub_resource type="Animation" id="Animation_xwuaj"]
+resource_name = "haunting"
+length = 30.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemies/Ghost")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(2.93333, 1, 0, 0, -3.93804, 5.03333, 1, 0.924122, 1.60786, -3.93804)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemies/Ghost2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(7.66667, 1, 0, 0, 3.92356, 9.96667, 1, -0.869441, 1.88108, 3.69185)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Enemies/Ghost3")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(15.5667, 1, -2.77899, 0, 0, 21, 1, -2.06313, 0.510356, 0.983314)
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GameOverPlayer:current_animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GameOverPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(29.6667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"game_over", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8kry1"]
 _data = {
 "RESET": SubResource("Animation_nvk3r"),
@@ -86,6 +195,9 @@ size = Vector2(5, 4.985)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ir30g"]
 size = Vector2(5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bt0lb"]
+size = Vector3(1, 5.58438, 4.45709)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jnv2n"]
 emission_shape_scale = Vector3(10, 1, 10)
@@ -114,6 +226,36 @@ size = Vector2(0.1, 0.1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_r4gmq")
+
+[node name="GameOverPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_dw2h3")
+}
+
+[node name="UserInterface" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="GameOverLabel" type="RichTextLabel" parent="UserInterface"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font_size=80][center]
+
+[/center]
+[/font_size]"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.49697, -0.75151, 0.433882, 0, 0.499998, 0.866027, -0.867768, 0.430389, -0.248484, 0, 0, 0)
@@ -192,6 +334,36 @@ operation = 2
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Tent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.97573, 0)
 size = Vector3(5.55, 4.5, 5.05)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tent"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tent/StaticBody3D"]
+transform = Transform3D(0.843373, -0.537329, 0, 0.537329, 0.843373, 0, 0, 0, 1, 1.62791, 2.22221, 0.0762329)
+shape = SubResource("BoxShape3D_bt0lb")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Tent/StaticBody3D"]
+transform = Transform3D(-0.868078, -0.496429, 0, 0.496429, -0.868078, 0, 0, 0, 1, -1.76376, 2.22221, 0.0762329)
+shape = SubResource("BoxShape3D_bt0lb")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Tent/StaticBody3D"]
+transform = Transform3D(3.79449e-08, 2.16996e-08, -1, -0.00411904, -0.999992, -2.18557e-08, -0.999992, 0.00411904, -3.78552e-08, -2.00646, 2.22221, -2.87247)
+shape = SubResource("BoxShape3D_bt0lb")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Tent/StaticBody3D"]
+transform = Transform3D(3.79449e-08, 2.16996e-08, -1, -0.00411904, -0.999992, -2.18557e-08, -0.999992, 0.00411904, -3.78552e-08, 2.0919, 2.22221, 2.54866)
+shape = SubResource("BoxShape3D_bt0lb")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Tent/StaticBody3D"]
+transform = Transform3D(3.79449e-08, 2.16996e-08, -1, -0.00411904, -0.999992, -2.18557e-08, -0.999992, 0.00411904, -3.78552e-08, -3.44699, 2.22221, 2.54866)
+shape = SubResource("BoxShape3D_bt0lb")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Tent/StaticBody3D"]
+transform = Transform3D(3.79449e-08, 2.16996e-08, -1, -0.00411904, -0.999992, -2.18557e-08, -0.999992, 0.00411904, -3.78552e-08, 3.44991, 2.22221, -2.92938)
+shape = SubResource("BoxShape3D_bt0lb")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Tent/StaticBody3D"]
+transform = Transform3D(3.79449e-08, 2.16996e-08, -1, 0.999992, -0.00411899, 3.78552e-08, -0.00411899, -0.999992, -2.18557e-08, 0.0585909, -0.550772, 0.15873)
+shape = SubResource("BoxShape3D_bt0lb")
 
 [node name="SnowParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true

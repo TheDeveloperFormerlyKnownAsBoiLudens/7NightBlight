@@ -1,10 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://crj1fl50mhsrb"]
+[gd_scene load_steps=4 format=3 uid="uid://crj1fl50mhsrb"]
 
 [ext_resource type="Texture2D" uid="uid://bxltddfua7r0v" path="res://enemies/ghost/ghost.png" id="1_nad55"]
+[ext_resource type="Script" path="res://enemies/ghost/ghost.gd" id="1_rajpl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_48obg"]
 
 [node name="Ghost" type="Node3D"]
+script = ExtResource("1_rajpl")
 
 [node name="GhostSprite" type="Sprite3D" parent="."]
 pixel_size = 0.001
 billboard = 1
 texture = ExtResource("1_nad55")
+
+[node name="Area3D" type="Area3D" parent="."]
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_48obg")
+
+[connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]

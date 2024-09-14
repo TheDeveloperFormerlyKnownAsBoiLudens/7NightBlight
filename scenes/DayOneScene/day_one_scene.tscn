@@ -1,9 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://djwx64ak1b3vl"]
+[gd_scene load_steps=34 format=3 uid="uid://djwx64ak1b3vl"]
 
 [ext_resource type="Script" path="res://scenes/DayOneScene/day_one.gd" id="1_lo0ub"]
 [ext_resource type="Script" path="res://scenes/DayOneScene/director.gd" id="2_psxfw"]
 [ext_resource type="Texture2D" uid="uid://cm0nrtxupv3m" path="res://scenes/DayOneScene/timer.png" id="3_gj5vf"]
 [ext_resource type="Script" path="res://scenes/DayOneScene/timer.gd" id="4_owkv3"]
+[ext_resource type="PackedScene" uid="uid://buhid45ri3w31" path="res://scenes/Night1Scene/night_one_scene.tscn" id="5_jp1df"]
 [ext_resource type="Texture2D" uid="uid://byy1t7xw37mu0" path="res://scenes/DayOneScene/timerARM.png" id="5_rtij8"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="6_yq732"]
 [ext_resource type="Resource" path="res://terrain/data.hterrain" id="7_tte23"]
@@ -139,6 +140,9 @@ _data = {
 "game_over": SubResource("Animation_yjulk")
 }
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_fr1tn"]
+specular_color = Color(0, 0, 0, 1)
+
 [sub_resource type="Resource" id="Resource_6b4ru"]
 script = ExtResource("8_fxhu7")
 mode = 0
@@ -214,6 +218,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TextureRect" type="TextureRect" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_fr1tn")
+
 [node name="GameOverLabel" type="RichTextLabel" parent="UserInterface"]
 visible = false
 layout_mode = 1
@@ -233,6 +246,7 @@ position = Vector2(556, 82.575)
 scale = Vector2(0.11, 0.11)
 texture = ExtResource("3_gj5vf")
 script = ExtResource("4_owkv3")
+next_scene = ExtResource("5_jp1df")
 
 [node name="ArmSprite" type="Sprite2D" parent="UserInterface/TimerSprite"]
 texture = ExtResource("5_rtij8")

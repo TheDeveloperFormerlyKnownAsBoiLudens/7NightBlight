@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var path_desired_distance: float = 0.5
 @export var target_desired_distance: float = 3.0
 
+@onready var director: Node = %Director
 @onready var doge_sprite: Sprite3D = $DogeSprite
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var detection_area: Area3D = $DetectionArea
@@ -69,5 +70,6 @@ func check_detection_area() -> bool:
 
 # TODO: think about refactoring this to interactable instead
 func add_to_cart(object: Area3D) -> void:
+	director.add_to_inventory(object)
 	object.reparent(cart)
 	object.global_position = cart.global_position
