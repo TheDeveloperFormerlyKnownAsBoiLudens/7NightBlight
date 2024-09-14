@@ -322,11 +322,11 @@ player = NodePath("../../Player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.1069, 0, 7.74866)
 
 [node name="Supplies" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.13385, 0.253948, -19.328)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.13385, 0.253948, -17.0678)
 texture = ExtResource("19_ks75v")
 
 [node name="Supplies2" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.04023, 0.253948, -19.328)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.04023, 0.253948, -17.0678)
 texture = ExtResource("19_ks75v")
 
 [node name="Candles" type="Node3D" parent="."]
